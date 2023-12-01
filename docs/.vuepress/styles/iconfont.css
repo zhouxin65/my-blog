@@ -1,0 +1,26 @@
+/*iconfont.css 文件内容*/
+
+@font-face {
+    /*font-family: 'iconfont';  !* Project id 4106829 *!*/
+    /*src: url('iconfont.woff2?t=1686190078548') format('woff2'),*/
+    /*url('iconfont.woff?t=1686190078548') format('woff'),*/
+    /*url('iconfont.ttf?t=1686190078548') format('truetype');*/
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-docker:before {
+    content: "\e600";
+}
+
+
+.icon-vue:before {
+    content: "\e799";
+}
