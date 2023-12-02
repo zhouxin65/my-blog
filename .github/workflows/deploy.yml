@@ -1,0 +1,63 @@
+# name 可以自定义
+name: Deploy my blog
+
+# 触发条件：在 push 到 main/master 分支后，新的 Github 项目 应该都是 main，而之前的项目一般都是 master
+on:
+  push:
+    branches:
+      - main
+# 任务
+jobs:
+  build-and-deploy:
+    # 服务器环境：centos 7.9
+    runs-on: centos-7.9
+    steps:
+      # 拉取代码
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      # 安装依赖
+      - name: Install Dependencies
+        run: npm install
+
+      # 生成静态文件
+      - name: 🔨 Build Project 
+        run: npm run docs:build
+        #env:
+        #  LEANCLOUD_APP_ID: ${{ secrets.LEANCLOUD_APP_ID }} # 评 论系统的ID
+        #  LEANCLOUD_APP_KEY: ${{ secrets.LEANCLOUD_APP_KEY }} # 评论系统的KEY
+
+      # 如果FTP-Deploy-Action出现，Dirty repository: Having uncommitted changes. 问题时，使用以下注释步骤解决问题
+      - name: reset git
+        run: git reset --hard
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_IP }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: docs/.vuepress/dist/ # 选择哪些文件要部署到服务器，这个选项在这里选了之后，要在.git-ftp-include中添加相应的路径
+          server-dir: /
+
+      #           ftp-server: sftp://${{ secrets.FTP_IP }}/home/www/htdocs # 服务器地址和端口（可以填域名，不过我服务器做了全站加速会导向加速结点的IP，所以只能用服务器的IP）
+      #           ftp-username: ${{ secrets.FTP_USERNAME }} # FTP用户名
+      #           ftp-password: ${{ secrets.FTP_PASSWORD }} # FTP密码
+      #           git-ftp-args: --insecure # （如果是FTP连接的话--insecure不用加）
+      #           local-dir: docs/.vuepress/dist/ # 选择哪些文件要部署到服务器，这个选项在这里选了之后，要在.git-ftp-include中添加相应的路径
+
+      - name: upload-artifact
+        uses: actions/upload-artifact@v3 #共享或保存action过程中产生的文件
+        with:
+          name: static_web_file
+          path: ./docs/.vuepress/dist/ # or path/to/artifact
+
+      # 部署到 GitHub Pages
+      # - name: Deploy
+      #   uses: JamesIves/github-pages-deploy-action@releases/v3
+      #   with:
+      #     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 也就是我们刚才生成的 secret
+      #     BRANCH: gh-pages # 部署到 gh-pages 分支，因为 main 分支存放的一般是源码，而 gh-pages 分支则用来存放生成的静态文件
+      #     FOLDER: docs/.vuepress/dist # vuepress 生成的静态文件存放的地方
