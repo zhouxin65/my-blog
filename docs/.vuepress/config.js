@@ -1,4 +1,5 @@
 module.exports = {
+    port: 8001,
     locales: {
         "/": {
             lang: "zh-CN"

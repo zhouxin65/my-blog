@@ -9,21 +9,36 @@ on:
 # 任务
 jobs:
   build-and-deploy:
-    # 服务器环境：centos 7.9
-    runs-on: centos-7.9
+    runs-on: ubuntu-latest
     steps:
       # 拉取代码
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          # “最近更新时间” 等 git 日志相关信息，需要拉取全部提交记录
+          fetch-depth: 0
+          # persist-credentials: false
 
-      # 安装依赖
+      - name: Use Node.js
+        uses: actions/setup-node@v2.5.1 # 使用node环境
+        with:
+          node-version: 14.17.6 # 版本
+
+      - name: Cache node modules
+        id: cache # 缓存id
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules # 缓存名字
+        with:
+          path: node_modules # 缓存路径
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package.json') }} # 缓存标识
+
       - name: Install Dependencies
-        run: npm install
+        if: steps.cache.outputs.cache-hit != 'true' # 如果没有缓存的话
+        run: npm install # 安装依赖
 
       # 生成静态文件
-      - name: 🔨 Build Project 
+      - name: 🔨 Build Project
         run: npm run docs:build
         #env:
         #  LEANCLOUD_APP_ID: ${{ secrets.LEANCLOUD_APP_ID }} # 评 论系统的ID
