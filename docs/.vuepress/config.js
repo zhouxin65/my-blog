@@ -37,8 +37,8 @@ module.exports = {
                 // link: "/blogs/"
                 ariaLabel: '后端菜单',
                 items: [
-                    { text: 'item 1', link: '/blogs/1/' },
-                    { text: 'item 2', link: '/blogs/2/' }
+                    {text: 'item 1', link: '/blogs/1/'},
+                    {text: 'item 2', link: '/blogs/2/'}
                 ]
             },
             {text: '笔记', link: '/notes/note1', icon: 'reco-document'},
@@ -120,7 +120,16 @@ module.exports = {
         // 分页插件
         ['@vuepress-reco/vuepress-plugin-pagation', {
             perPage: 5  // 每页展示条数
-        }]
+        }],
+        // .html 后缀隐藏插件
+        [
+            'vuepress-plugin-clean-urls',
+            {
+                normalSuffix: '/',
+                indexSuffix: '/',
+                notFoundPath: '/404.html',
+            },
+        ],
     ],
     // 评论插件配置
     // valineConfig: {

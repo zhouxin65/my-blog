@@ -21,6 +21,7 @@
     "vuepress-plugin-cursor-effects": "^1.1.6",
     "vuepress-plugin-nuggets-style-copy": "^1.0.3",
     "vuepress-plugin-sakura": "^1.2.1",
-    "vuepress-theme-reco": "^1.6.17"
+    "vuepress-theme-reco": "^1.6.17",
+    "vuepress-plugin-clean-urls": "^1.1.2"
   }
 }
