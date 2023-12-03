@@ -6,8 +6,8 @@ module.exports = {
         }
     },
     theme: "reco",
-    title: '鑫旺的知识库',
-    description: '好好学习，天天向上',
+    title: '鑫旺心语',
+    description: '心有千言，言不尽意',
     base: '/',
     markdown: {
         lineNumbers: true // 代码块显示行号
@@ -16,9 +16,9 @@ module.exports = {
         // 子侧边栏
         subSidebar: 'auto',
         sidebarDepth: 1,
-        logo: "/avatar.png",
+        logo: "/cat-avatar.jpg",
         // 个人信息的头像
-        authorAvatar: "/avatar.png",
+        authorAvatar: "/cat-avatar.jpg",
         // 主题模式 博客模式
         type: "blog",
         // 内置搜索
@@ -33,13 +33,18 @@ module.exports = {
         nav: [
             {text: "首页", link: "/"},
             {
-                text: "链接",
+                text: "后端",
+                // link: "/blogs/"
+                ariaLabel: '后端菜单',
                 items: [
-                    {text: "掘金", link: "https://juejin.cn/user/422676380792632"},
-                    {text: "Github", link: "https://github.com/zhouxin65"}
+                    { text: 'item 1', link: '/blogs/1/' },
+                    { text: 'item 2', link: '/blogs/2/' }
                 ]
             },
-            {text: '书籍', link: '/books/bookList', icon: 'reco-document'},
+            {text: '笔记', link: '/notes/note1', icon: 'reco-document'},
+            {text: '源码阅读', link: '/sourceCodes/sourceCode1', icon: 'iconfont icon-yuanma'},
+            {text: 'workflow', link: '/workflow/workflow1', icon: 'iconfont icon-workflow2'},
+            {text: '提效工具', link: '/tools/tool1', icon: 'iconfont icon-gongju'},
         ],
         // 侧边栏配置
         sidebar: {
@@ -65,16 +70,17 @@ module.exports = {
         },
         // 博客配置
         blogConfig: {
-            category: {
-                location: 2, // 在导航栏菜单中所占的位置，默认2
-                text: "博客", // 默认文案 “分类”
-            },
+            // category: {
+            //     location: 2, // 在导航栏菜单中所占的位置，默认2
+            //     text: "后端", // 默认文案 “分类”
+            // },
             tag: {
-                location: 4, // 在导航栏菜单中所占的位置，默认4
+                location: 3, // 在导航栏菜单中所占的位置，默认4
                 text: "Tag", // 默认文案 “标签”
             },
             socialLinks: [
-                {icon: 'reco-github', link: 'https://github.com/zhouxin65'}
+                {icon: 'reco-github', link: 'https://github.com/zhouxin65'},
+                {icon: 'iconfont icon-juejin', link: 'https://juejin.cn/user/422676380792632'},
             ]
         }
     },

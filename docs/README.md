@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: "/live.jpg"
-heroText: 鑫旺
+heroText: 鑫旺心语
 heroImageStyle:
   {
     maxHeight: "288px",

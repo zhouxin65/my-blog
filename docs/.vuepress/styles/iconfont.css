@@ -1,26 +1,35 @@
-/*iconfont.css 文件内容*/
-
 @font-face {
-    /*font-family: 'iconfont';  !* Project id 4106829 *!*/
-    /*src: url('iconfont.woff2?t=1686190078548') format('woff2'),*/
-    /*url('iconfont.woff?t=1686190078548') format('woff'),*/
-    /*url('iconfont.ttf?t=1686190078548') format('truetype');*/
+  font-family: "iconfont"; /* Project id 4356776 */
+  src: url('iconfont.woff2?t=1701609731613') format('woff2'),
+       url('iconfont.woff?t=1701609731613') format('woff'),
+       url('iconfont.ttf?t=1701609731613') format('truetype');
 }
 
 .iconfont {
-    font-family: "iconfont" !important;
-    font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-
-.icon-docker:before {
-    content: "\e600";
+.icon-workflow1:before {
+  content: "\eef3";
 }
 
-
-.icon-vue:before {
-    content: "\e799";
+.icon-workflow:before {
+  content: "\e618";
 }
+
+.icon-yuanma:before {
+  content: "\e681";
+}
+
+.icon-gongju:before {
+  content: "\e61f";
+}
+
+.icon-juejin:before {
+  content: "\e600";
+}
+
