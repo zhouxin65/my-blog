@@ -1,4 +1,6 @@
-# node modules
+.vuepress/.cache
+.vuepress/.temp
+.vuepress/dist
 node_modules
 
 # MacOS desktop services store

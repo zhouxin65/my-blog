@@ -1,27 +1,17 @@
 {
   "name": "my-blog",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "鑫旺的个人博客",
+  "repository": "https://github.com/zhouxin65/my-blog",
+  "author": "鑫旺",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "dev": "vuepress dev .",
+    "start": "vuepress dev .",
+    "build": "vuepress build ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@vuepress-reco/vuepress-plugin-pagation": "^1.6.17",
-    "@vuepress/plugin-back-to-top": "^1.9.10",
-    "@vuepress/plugin-pwa": "^1.9.10",
-    "patch-package": "^8.0.0",
-    "postinstall-postinstall": "^2.1.0",
-    "vuepress": "^1.9.10",
-    "vuepress-plugin-cursor-effects": "^1.1.6",
-    "vuepress-plugin-nuggets-style-copy": "^1.0.3",
-    "vuepress-plugin-sakura": "^1.2.1",
-    "vuepress-theme-reco": "^1.6.17",
-    "vuepress-plugin-clean-urls": "^1.1.2"
+  "dependencies": {
+    "vuepress": "2.0.0-beta.66",
+    "vuepress-theme-reco": "2.0.0-beta.67"
   }
 }
