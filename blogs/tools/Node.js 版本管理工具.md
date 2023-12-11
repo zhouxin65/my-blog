@@ -1,11 +1,10 @@
 ---
 title: Node.js 版本管理工具
 date: 2023-12-06
-categories:
-  - Node.js
+#categories:
+#  - Node.js
 tags:
-  - 版本管理工具
-  - Node.js
+  - tools
 sticky: 1
 ---
 

@@ -58,12 +58,24 @@ export default defineUserConfig({
                             link: "/blogs/tools/mac.html"
                         },
                         {
+                            text: "Oh-my-zsh 安装",
+                            link: "/blogs/tools/Oh-my-zsh 安装.html"
+                        },
+                        {
                             text: "管理工具",
                             children: [
                                 {
                                     text: "Node.js 版本管理工具",
                                     link: "/blogs/tools/Node.js 版本管理工具.html"
-                                }
+                                },
+                                {
+                                    text: "HomeBrew 包管理工具",
+                                    link: "/blogs/tools/HomeBrew - 包管理工具.html"
+                                },
+                                {
+                                    text: "SDKMAN SDK 管理工具",
+                                    link: "/blogs/tools/SDKMAN - JDK 管理工具.html"
+                                },
                             ]
                         }
                     ]

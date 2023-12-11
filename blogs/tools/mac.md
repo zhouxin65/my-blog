@@ -9,6 +9,19 @@ sticky: 1
 ---
 
 # Mac 平台
+
+## 错误提示
+
+文件已损坏：
+
+```bash
+sudo spctl --master-disable
+# 更换为损坏的 app 名字
+xattr -cr /Applications/提示损坏的.app
+```
+
+<img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202312111819742.png" alt="文件已损坏解决" style="zoom: 50%;" />
+
 ## 系统设置
 ```sh
 # 禁止 “Are you sure you want to open this application?” 提示
@@ -35,5 +48,14 @@ defaults write com.apple.finder ShowPathbar -bool true
 
 # 禁止创建 .DS_Store 文件
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+```
+
+## Vim 
+
+#### 开启行号
+
+```bash
+vim ~/.vimrc
+set number
 ```
 
