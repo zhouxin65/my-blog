@@ -4,6 +4,7 @@ modules:
   - BannerBrand
   - Blog
   - MdContent
+  - Comment
   - Footer
 bannerBrand:
   bgImage: '/bg.svg'
@@ -18,9 +19,15 @@ bannerBrand:
 blog:
   socialLinks:
     - { icon: 'LogoGithub', link: 'https://github.com/zhouxin65' }
-    - { icon: 'LogoGithub', link: 'https://juejin.cn/user/422676380792632' }
-    
-isShowTitleInHome: true
-actionText: About
-actionLink: /views/other/about
+#    - { icon: 'LogoGithub', link: 'https://juejin.cn/user/422676380792632' }
+
+# 底部模块配置
+footer:
+  record: 粤ICP备2023146172号
+  recordLink: https://beian.miit.gov.cn/
+  startYear: 2023
+
+#isShowTitleInHome: true
+#actionText: About
+#actionLink: /views/other/about
 ---
