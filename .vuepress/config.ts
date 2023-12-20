@@ -49,6 +49,17 @@ export default defineUserConfig({
                     children: ["api", "plugin"],
                 },
             ],
+            "/blogs/back-end/": [
+                {
+                    text: "项目性能优化",
+                    children: [
+                        {
+                            text: "项目性能环境搭建",
+                            link: "/blogs/back-end/项目性能优化环境搭建.html"
+                        }
+                    ]
+                }
+            ],
             "/blogs/tools/": [
                 {
                     text: "Mac 平台",
@@ -80,7 +91,6 @@ export default defineUserConfig({
                         }
                     ]
                 },
-
             ]
         },
         navbar: [
@@ -90,8 +100,7 @@ export default defineUserConfig({
                 ariaLabel: '后端菜单',
                 icon: 'Book',
                 children: [
-                    {text: 'item 1', link: '/blogs/back-end/1'},
-                    {text: 'item 2', link: '/blogs/back-end/2'}
+                    {text: '项目性能优化', link: '/blogs/back-end/项目性能优化环境搭建.html'},
                 ]
             },
             {
