@@ -5,7 +5,7 @@ categories:
   - Mac
 tags:
   - Mac
-sticky: 1
+#sticky: 1
 ---
 
 # Mac 平台

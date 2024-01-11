@@ -49,16 +49,40 @@ export default defineUserConfig({
                     children: ["api", "plugin"],
                 },
             ],
-            "/blogs/back-end/": [
+            "/blogs/back-end/optimize": [
                 {
                     text: "项目性能优化",
                     children: [
                         {
                             text: "项目性能环境搭建",
-                            link: "/blogs/back-end/项目性能优化环境搭建.html"
+                            link: "/blogs/back-end/optimize/项目性能优化环境搭建.html"
+                        }
+                    ]
+                },
+            ],
+            "/blogs/back-end/jvm": [
+                {
+                    text: "JVM 虚拟机",
+                    children: [
+                        {
+                            text: "JVM 虚拟机",
+                            link: "/blogs/back-end/jvm/JVM 虚拟机.html"
                         }
                     ]
                 }
+
+            ],
+            "/blogs/books/": [
+                {
+                    text: "目录",
+                    children: [
+                        {
+                            text: "目录",
+                            link: "/blogs/books/catalogue.html"
+                        }
+                    ]
+                }
+
             ],
             "/blogs/tools/": [
                 {
@@ -98,9 +122,10 @@ export default defineUserConfig({
             {
                 text: "后端",
                 ariaLabel: '后端菜单',
-                icon: 'Book',
+                icon: 'PresentationFile',
                 children: [
-                    {text: '项目性能优化', link: '/blogs/back-end/项目性能优化环境搭建.html'},
+                    {text: '项目性能优化', link: '/blogs/back-end/optimize/项目性能优化环境搭建.html'},
+                    {text: 'JVM 虚拟机', link: '/blogs/back-end/jvm/JVM 虚拟机.html'},
                 ]
             },
             {
@@ -109,10 +134,12 @@ export default defineUserConfig({
                 children: [
                     {text: 'Mac', link: '/categories/Mac/1/'},
                     {text: 'Node.js', link: '/categories/Node.js/1/'},
+                    {text: '优化', link: '/categories/youhua/1/'},
+                    {text: 'JVM', link: '/categories/JVM/1/'},
                 ]
             },
             {text: '笔记', link: '/blogs/notes/note1', icon: 'Document'},
-            {text: '源码阅读', link: '/blogs/sourceCodes/sourceCode1', icon: 'PresentationFile'},
+            {text: '书籍', link: '/blogs/books/catalogue.html', icon: 'Book'},
             {text: 'workflow', link: '/blogs/workflow/workflow1', icon: 'LoadBalancerVpc'},
             {
                 text: '提效工具',
