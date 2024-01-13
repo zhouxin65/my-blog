@@ -700,3 +700,136 @@ public class StringTableDemo {
 #### 直接内存和堆内存比较：
 
 ![image-20240111224133688](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401112241726.png)
+
+## 1.4 对象的创建流程与内存分配
+
+### 1.4.1 对象的创建流程
+
+![image-20240113104541015](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131045058.png)
+
+### 1.4.2 对象的内存分配方式 
+
+*内存分配的方法有两种：不同垃圾收集器不一样*
+
+- **指针碰撞** (Bump the Pointer)
+- **空闲列表** (Free List)
+
+| 分配方法 | 说明                       | 收集器                             |
+| -------- | -------------------------- | ---------------------------------- |
+| 指针碰撞 | 内存地址是连续的（新生代） | `serial` 和 `parNew` 收集器        |
+| 空闲列表 | 内存地址不连续（老年代）   | `CMS` 收集器和 `Mark-Sweep` 收集器 |
+
+![image-20240113104953861](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131049892.png)
+
+**指针碰撞示意图：**
+
+![image-20240113105127513](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131051547.png)
+
+### 1.4.3 内存分配安全问题
+
+虚拟机给 A 线程分配内存的过程中，指针未修改，此时 B 线程同时使用了该内存，是不是就出现问题了？
+
+**怎么办？**
+
+- **CAS乐观锁：**JVM 虚拟机采用 CAS 失败重试的方式保证更新操作的原子性
+- TLAB（Thread Local Allocation Buffer）**本地线程分配缓存**，预分配
+
+**对象内存分配流程【重要】：**
+
+- **分配主流程：**首先从 TLAB 里面分配，如果分配不到，再使用 CAS 从堆里面划分
+
+![image-20240113105450026](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131054083.png)
+
+### 1.4.4 对象怎样才会进入老年代？【重点】
+
+- 新生代：新对象大多数都默认进入新生代的 Eden 区
+
+- 对象进入老年代的四种情况：
+
+  1. **年龄太大 Minor GC 15次**
+
+     - `-XX:MaxTenuringThreshold`
+
+  2. **动态年龄判断：**MinorGC 之后，若 Survivor 区中的一批对象的总大小 > Survivor区
+
+     的50%，那么就会将此时大于等于这批对象年龄最大值的所有对象，直接进入老年代
+
+     - 举个栗子：Survivor 区中有一批对象，年龄分别为年龄 1 + 年龄 2 + 年龄 n 的多个对象，对
+
+       象总和大小超过了Survivor区域的50%，此时就会把年龄 n 及以上的对象都放入老年
+
+       代 
+
+     - **目的：希望那些可能是长期存活的对象，尽早进入老年代。**
+
+     - `-XX:TargetSurvivorRatio` 可以指定
+
+  3. **大对象**直接进入老年代：**前提是 Serial 和 ParNew 收集器**
+
+     -  举个栗子：字符串或数组
+     - **目的：避免大对象分配内存时的复制操作降低效率，避免 Eden 和 Survior 区的复制**
+     - `-XX:PretenureSizeThreshold`  一般默认为 **1M**
+
+  4. **MinorGC 后存活对象太多无法放入 Survivor**
+
+**内存（空间）担保机制：**
+
+当新生代无法分配内存的时候，我们想把新生代的**老对象**转移到老年代，然后把**新对象**放入腾空的新生代。
+
+- MinorGC 前，判断老年代可用内存是否小于新时代对象全部对象大小，如果小于则继续判断
+- 判断老年代可用内存大小是否小于之前每次 MinorGC 后进入老年代的对象平均大小
+  - 如果是，则会进行一次 FullGC，判断是否放得下，放不下 OOM
+  - 如果否，则会进行一些 MinorGC：
+    - MinorGC 后，剩余存活对象小于 Survivor 区大小，直接进入 Survivor 区
+    - MinorGC 后，剩余存活对象大于 Survivor 区大小，但是小于老年代可用内存，直接进入老年代
+    - MinorGC 后，剩余存活对象大于 Survivor 区大小，也大于老年代可用内存，进行 FullGC
+    - FullGC 之后，仍然没有足够内存存放 MinorGC 的剩余对象，就会OOM
+
+![image-20240113111206849](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131112886.png)
+
+## 1.5 对象内存布局
+
+#### 1.5.1 对象里的三个区
+
+1. **对象头**
+   - 标记字段：存储对象运行时自身数据
+     - 默认：对象Hashcode，GC分代年龄，锁状态
+     - 存储数据结构并不是固定的
+   - 类型指针：对象指向类元数据的指针
+     - 开启指针压缩占4字节，不开启8字节
+   - 数组长度：如果是数组，则记录数组长度，占4字节
+   - 对其填充：保证数组的大小永远是8字节的整数倍
+2. **实例数据**：对象内部的成员变量
+3. **对齐填充**：8字节对象，保证对象大小是8字节的整数倍
+
+<img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131117651.png" alt="image-20240113111729615" style="zoom: 33%;" />
+
+<img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131117443.png" alt="image-20240113111755406" style="zoom:50%;" />
+
+**Marword 是可变的数据结构，对象头总大小固定 8 字节**
+
+<img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131118234.png" alt="image-20240113111837193" style="zoom: 30%;" />
+
+基本数据类型和包装类的内存占用情况：
+
+| 数据类型 | 内存占用（byte） | 数据类型  | 内存占用（byte） |
+| -------- | ---------------- | --------- | ---------------- |
+| boolean  | 1                | Boolean   | 4                |
+| byte     | 1                | Byte      | 4                |
+| short    | 2                | Short     | 4                |
+| char     | 2                | Character | 4                |
+| int      | 4                | Integer   | 4                |
+| float    | 4                | Float     | 4                |
+| long     | 8                | Long      | 4                |
+| double   | 8                | Double    | 4                |
+
+#### 1.5.2 如何访问一个对象
+
+两种方式：
+
+- **句柄**
+- **直接指针**
+
+<img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131124295.png" alt="image-20240113112403254" style="zoom:50%;" />
+
+<img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131124110.png" alt="image-20240113112416070" style="zoom:50%;" />

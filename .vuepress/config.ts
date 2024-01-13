@@ -37,6 +37,7 @@ export default defineUserConfig({
         // autoSetBlogCategories: true,
         // autoSetSeries: true,
 
+        // 侧边栏
         // series 为原 sidebar
         series: {
             "/blogs/theme-reco/": [
@@ -62,11 +63,11 @@ export default defineUserConfig({
             ],
             "/blogs/back-end/jvm": [
                 {
-                    text: "JVM 虚拟机",
+                    text: "JVM",
                     children: [
                         {
-                            text: "JVM 虚拟机",
-                            link: "/blogs/back-end/jvm/JVM 虚拟机.html"
+                            text: "JVM 虚拟机概述",
+                            link: "/blogs/back-end/jvm/JVM 虚拟机概述.html"
                         }
                     ]
                 }
@@ -117,6 +118,7 @@ export default defineUserConfig({
                 },
             ]
         },
+        // 导航栏
         navbar: [
             {text: "首页", link: "/"},
             {
@@ -124,8 +126,8 @@ export default defineUserConfig({
                 ariaLabel: '后端菜单',
                 icon: 'PresentationFile',
                 children: [
-                    {text: '项目性能优化', link: '/blogs/back-end/optimize/项目性能优化环境搭建.html'},
-                    {text: 'JVM 虚拟机', link: '/blogs/back-end/jvm/JVM 虚拟机.html'},
+                    {text: '优化', link: '/blogs/back-end/optimize/项目性能优化环境搭建.html'},
+                    {text: 'JVM', link: '/blogs/back-end/jvm/JVM 虚拟机概述.html'},
                 ]
             },
             {
@@ -150,6 +152,7 @@ export default defineUserConfig({
                 icon: 'ToolBox'
             },
         ],
+        // 公告
         bulletin: {
             body: [
                 {
