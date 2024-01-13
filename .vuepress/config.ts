@@ -68,10 +68,13 @@ export default defineUserConfig({
                         {
                             text: "JVM 虚拟机概述",
                             link: "/blogs/back-end/jvm/JVM 虚拟机概述.html"
+                        },
+                        {
+                            text: "JVM 垃圾收集器",
+                            link: "/blogs/back-end/jvm/JVM 垃圾收集器.html"
                         }
                     ]
-                }
-
+                },
             ],
             "/blogs/books/": [
                 {
