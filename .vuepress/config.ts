@@ -76,6 +76,17 @@ export default defineUserConfig({
                     ]
                 },
             ],
+            "/blogs/back-end/concurrent": [
+                {
+                    text: "并发编程",
+                    children: [
+                        {
+                            text: "多线程",
+                            link: "/blogs/back-end/concurrent/多线程.html"
+                        },
+                    ]
+                },
+            ],
             "/blogs/books/": [
                 {
                     text: "目录",
@@ -131,6 +142,7 @@ export default defineUserConfig({
                 children: [
                     {text: '优化', link: '/blogs/back-end/optimize/项目性能优化环境搭建.html'},
                     {text: 'JVM', link: '/blogs/back-end/jvm/JVM 虚拟机概述.html'},
+                    {text: '并发编程', link: '/blogs/back-end/concurrent/多线程.html'},
                 ]
             },
             {
@@ -141,11 +153,12 @@ export default defineUserConfig({
                     {text: 'Node.js', link: '/categories/Node.js/1/'},
                     {text: '优化', link: '/categories/youhua/1/'},
                     {text: 'JVM', link: '/categories/JVM/1/'},
+                    {text: '并发编程', link: '/categories/concurrent/1/'},
                 ]
             },
-            {text: '笔记', link: '/blogs/notes/note1', icon: 'Document'},
-            {text: '书籍', link: '/blogs/books/catalogue.html', icon: 'Book'},
-            {text: 'workflow', link: '/blogs/workflow/workflow1', icon: 'LoadBalancerVpc'},
+            // {text: '笔记', link: '/blogs/notes/note1', icon: 'Document'},
+            // {text: '书籍', link: '/blogs/books/catalogue.html', icon: 'Book'},
+            // {text: 'workflow', link: '/blogs/workflow/workflow1', icon: 'LoadBalancerVpc'},
             {
                 text: '提效工具',
                 children: [
