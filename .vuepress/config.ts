@@ -84,6 +84,10 @@ export default defineUserConfig({
                             text: "多线程",
                             link: "/blogs/back-end/concurrent/多线程.html"
                         },
+                        {
+                            text: "并发编程",
+                            link: "/blogs/back-end/concurrent/并发编程.html"
+                        },
                     ]
                 },
             ],

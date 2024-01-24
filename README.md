@@ -2,7 +2,7 @@
 home: true
 modules:
   - BannerBrand
-  - Blog
+#  - Blog
   - MdContent
   - Comment
   - Footer
@@ -12,13 +12,13 @@ bannerBrand:
   description: 心有千言，言不尽意
   tagline: 技术之树，常青于细学不辍；心语之花，盛开于深思细想。
   buttons:
-    - { text: 后端, link: '/blogs/back-end/1.html' }
-    - { text: 笔记, link: '/blogs/notes/note1.html', type: 'plain' }
+    - { text: 后端, link: '/blogs/back-end/concurrent/多线程.html' }
+#    - { text: 笔记, link: '/blogs/notes/note1.html', type: 'plain' }
   socialLinks:
     - { icon: 'LogoGithub', link: 'https://github.com/zhouxin65' }
-blog:
-  socialLinks:
-    - { icon: 'LogoGithub', link: 'https://github.com/zhouxin65' }
+#blog:
+#  socialLinks:
+#    - { icon: 'LogoGithub', link: 'https://github.com/zhouxin65' }
 #    - { icon: 'LogoGithub', link: 'https://juejin.cn/user/422676380792632' }
 
 # 底部模块配置
