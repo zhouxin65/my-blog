@@ -1,8 +1,8 @@
 ---
 title: SDKMAN JDK 版本管理工具
 date: 2023-12-11
-#categories:
-#  - tools
+categories:
+  - tools
 tags:
   - tools
 #sticky: 1

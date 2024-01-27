@@ -1,10 +1,10 @@
 ---
 title: Oh-my-zsh 安装
 date: 2023-12-11
-#categories:
-#  - tools
-#tags:
-#  - tools
+categories:
+  - tools
+tags:
+  - tools
 #sticky: 1
 ---
 

@@ -2,9 +2,9 @@
 title: 项目性能优化环境搭建
 date: 2023-12-20
 categories:
-  - 优化
+  - optimize
 tags:
-  - 优化
+  - optimize
 #sticky: 1
 ---
 
