@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "vuepress": "2.0.0-rc.0",
+    "vuepress-plugin-sitemap2": "2.0.0-rc.0",
     "vuepress-theme-reco": "2.0.0-rc.1"
   }
 }

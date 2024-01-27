@@ -1,6 +1,6 @@
 import {defineUserConfig} from "vuepress";
-import type {DefaultThemeOptions} from "vuepress";
 import recoTheme from "vuepress-theme-reco";
+import {sitemapPlugin} from "vuepress-plugin-sitemap2";
 
 export default defineUserConfig({
     title: "鑫旺心语",
@@ -17,7 +17,26 @@ export default defineUserConfig({
             },
         ],
     ],
+    locales: {
+        '/': {
+            lang: 'zh-CN',
+        },
+    },
     theme: recoTheme({
+        algolia: {
+            // appId: process.env.ALGOLIA_APPID,
+            // apiKey: process.env.ALGOLIA_APIKEY,
+            // indexName: process.env.ALGOLIA_INDEXNAME,
+            appId: '1UTTDQ4S2Z',
+            apiKey: '9551d997e8cbab5e5e01fe18ec7480a5',
+            indexName: 'xinwang',
+            insights: true,
+            inputSelector: '#docsearch-input',
+            placeholder: '请输入关键词',
+            buttonText: '搜索',
+            // algoliaOptions: { 'facetFilters': ["lang:$LANG"] },
+            debug: true // Set debug to true if you want to inspect the dropdown
+        },
         locales: {
             '/': {
                 lang: 'zh-CN',
@@ -209,6 +228,15 @@ export default defineUserConfig({
                 },
             ],
         },
+
+        // 插件
+        plugins: [
+            sitemapPlugin({
+                // 配置选项
+                hostname: "https://www.xinwang.life",
+            })
+        ],
+
         // commentConfig: {
         //   type: 'valie',
         //   // options 与 1.x 的 valineConfig 配置一致

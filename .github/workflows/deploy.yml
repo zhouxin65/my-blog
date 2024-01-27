@@ -35,10 +35,16 @@ jobs:
 
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true' # 如果没有缓存的话
-        run: yarn & npm install # 安装依赖
+        run: |
+          yarn config set ignore-engines true & yarn install
+          npm install --legacy-peer-deps # 安装依赖
 
       # 生成静态文件
       - name: 🔨 Build Project
+        env:
+          ALGOLIA_APPID: ${{ secrets.ALGOLIA_APPID }}
+          ALGOLIA_APIKEY: ${{ secrets.ALGOLIA_APIKEY }}
+          ALGOLIA_INDEXNAME: ${{ secrets.ALGOLIA_INDEXNAME }}
         run: |
           yarn build
           npm run build
@@ -60,7 +66,7 @@ jobs:
       #           ftp-server: sftp://${{ secrets.FTP_IP }}/home/www/htdocs # 服务器地址和端口（可以填域名，不过我服务器做了全站加速会导向加速结点的IP，所以只能用服务器的IP）
       #           ftp-username: ${{ secrets.FTP_USERNAME }} # FTP用户名
       #           ftp-password: ${{ secrets.FTP_PASSWORD }} # FTP密码
-      #           git-ftp-args: --insecure # （如果是FTP连接的话--insecure不用加）
+      #           git-ftp-args: --insecyarn ure # （如果是FTP连接的话--insecure不用加）
       #           local-dir: docs/.vuepress/dist/ # 选择哪些文件要部署到服务器，这个选项在这里选了之后，要在.git-ftp-include中添加相应的路径
 
       - name: upload-artifact

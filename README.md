@@ -12,7 +12,7 @@ bannerBrand:
   description: 心有千言，言不尽意
   tagline: 技术之树，常青于细学不辍；心语之花，盛开于深思细想。
   buttons:
-    - { text: 后端, link: '/blogs/back-end/concurrent/多线程.html' }
+    - { text: 后端, link: '/blogs/back-end/concurrent/duoxiancheng.html' }
 #    - { text: 笔记, link: '/blogs/notes/note1.html', type: 'plain' }
   socialLinks:
     - { icon: 'LogoGithub', link: 'https://github.com/zhouxin65' }
