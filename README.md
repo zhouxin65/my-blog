@@ -28,7 +28,6 @@ footer:
   startYear: 2023
   cyberSecurityRecord: 粤公网安备44030002001802号
   cyberSecurityLink: https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030002001802
-  
 
 #isShowTitleInHome: true
 #actionText: About
