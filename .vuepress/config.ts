@@ -1,47 +1,31 @@
 import {defineUserConfig} from "vuepress";
 import recoTheme from "vuepress-theme-reco";
-import {sitemapPlugin} from "vuepress-plugin-sitemap2";
+import katex from 'markdown-it-katex';
+import {seoPlugin} from 'vuepress-plugin-seo2';
+import {googleAnalyticsPlugin} from '@vuepress/plugin-google-analytics';
+import {sitemapPlugin} from 'vuepress-plugin-sitemap2';
 
 export default defineUserConfig({
     title: "鑫旺心语",
-    description: "Just playing around",
+    description: "心有千言，言不尽意",
     port: 8001,
     dest: "dist",
+    shouldPrefetch: false,
     head: [
         ["link", {rel: "icon", href: "/cat-avatar.jpg"}],
+        ['link', {rel: 'stylesheet', href: '/css/katex.min.css'}],
+        ['link', {rel: 'stylesheet', href: '/css/github-markdown.min.css'}],
         [
             "meta",
             {
-                name: "viewport",
-                content: "width=device-width,initial-scale=1,user-scalable=no",
+                name: "description",
+                content: "鑫旺心语官网",
             },
         ],
     ],
-    locales: {
-        '/': {
-            lang: 'zh-CN',
-        },
-    },
+    lang: 'zh-CN',
     theme: recoTheme({
-        algolia: {
-            appId: '1UTTDQ4S2Z',
-            apiKey: '9551d997e8cbab5e5e01fe18ec7480a5',
-            indexName: 'xinwang',
-            insights: true,
-            inputSelector: '#docsearch-input',
-            placeholder: '请输入关键词',
-            buttonText: '搜索',
-            // algoliaOptions: { 'facetFilters': ["lang:$LANG"] },
-            debug: false // Set debug to true if you want to inspect the dropdown
-        },
-        locales: {
-            '/': {
-                lang: 'zh-CN',
-                title: '鑫旺心语',
-                description: '心有千言，言不尽意',
-            },
-        },
-        colorMode: 'light',
+        colorMode: 'dark',
         style: "@vuepress-reco/style-default",
         logo: "/cat-avatar.jpg",
         author: "鑫旺",
@@ -202,14 +186,6 @@ export default defineUserConfig({
             ],
         },
 
-        // 插件
-        plugins: [
-            sitemapPlugin({
-                // 配置选项
-                hostname: "https://www.xinwang.life",
-            })
-        ],
-
         // commentConfig: {
         //   type: 'valie',
         //   // options 与 1.x 的 valineConfig 配置一致
@@ -223,6 +199,44 @@ export default defineUserConfig({
         //     // hideComments: true // 隐藏评论
         //   },
         // },
+        algolia: {
+            appId: '1UTTDQ4S2Z',
+            apiKey: '813f32e60b86c893421cba04800d9f8b',
+            indexName: 'xinwang',
+            inputSelector: '### REPLACE ME ####',
+            placeholder: '请输入关键词',
+            translations: {
+                button: {
+                    buttonText: '搜索',
+                }
+            },
+            insights: true, // Optional, automatically send insights when user interacts with search results
+            algoliaOptions: {'facetFilters': ["lang:$LANG"]},
+            debug: false, // Set debug to true if you want to inspect the dropdown
+        },
     }),
+
+    // 插件
+    plugins: [
+        googleAnalyticsPlugin({
+            id: 'G-F5114VJLFL',
+        }),
+        seoPlugin({
+            hostname: 'https://www.xinwang.life',
+            author: {
+                name: '鑫旺',
+                email: 'zhouxin65@foxmail.com',
+            },
+        }),
+        sitemapPlugin({
+            // 配置选项
+            hostname: 'https://www.xinwang.life',
+            changefreq: 'weekly',
+        }),
+    ],
+    extendsMarkdown: md => {
+        md.set({html: true});
+        md.use(katex);
+    },
     // debug: true,
 });

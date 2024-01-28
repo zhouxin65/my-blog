@@ -33,18 +33,18 @@ jobs:
           path: node_modules # 缓存路径
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package.json') }} # 缓存标识
 
+      - name: set yarn config
+        run:
+          yarn config set ignore-engines true
+
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true' # 如果没有缓存的话
         run: |
-          yarn config set ignore-engines true & yarn install
+          yarn install
           npm install --legacy-peer-deps # 安装依赖
 
       # 生成静态文件
       - name: 🔨 Build Project
-        env:
-          ALGOLIA_APPID: ${{ secrets.ALGOLIA_APPID }}
-          ALGOLIA_APIKEY: ${{ secrets.ALGOLIA_APIKEY }}
-          ALGOLIA_INDEXNAME: ${{ secrets.ALGOLIA_INDEXNAME }}
         run: |
           yarn build
           npm run build
