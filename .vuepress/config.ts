@@ -1,8 +1,8 @@
 import {defineUserConfig} from "vuepress";
-import {recoTheme} from "vuepress-theme-reco";
+import recoTheme from "vuepress-theme-reco";
 import katex from 'markdown-it-katex';
-import {seoPlugin} from 'vuepress-plugin-seo2';
 import {googleAnalyticsPlugin} from '@vuepress/plugin-google-analytics';
+import {seoPlugin} from 'vuepress-plugin-seo2';
 import {sitemapPlugin} from 'vuepress-plugin-sitemap2';
 
 export default defineUserConfig({
@@ -22,9 +22,8 @@ export default defineUserConfig({
                 content: "鑫旺心语官网",
             },
         ],
-
         ['script', {},
-          `var _hmt = _hmt || [];
+            `var _hmt = _hmt || [];
           (function() {
             var hm = document.createElement("script");
             hm.src = "https://hm.baidu.com/hm.js?05461e524359755afd727f3110418045";
@@ -32,7 +31,6 @@ export default defineUserConfig({
             s.parentNode.insertBefore(hm, s);
           })();`
         ]
-
     ],
     lang: 'zh-CN',
     theme: recoTheme({
@@ -44,11 +42,10 @@ export default defineUserConfig({
         blogsRepo: "https://github.com/zhouxin65/my-blog",
         blogsBranch: "main",
         lastUpdatedText: "上次更新",
-
         // 侧边栏
         // series 为原 sidebar
         series: {
-            "/blogs/back-end/optimize": [
+            "/blogs/back-end/optimize/": [
                 {
                     text: "项目性能优化",
                     children: [
@@ -59,7 +56,7 @@ export default defineUserConfig({
                     ]
                 },
             ],
-            "/blogs/back-end/jvm": [
+            "/blogs/back-end/jvm/": [
                 {
                     text: "JVM",
                     children: [
@@ -74,7 +71,7 @@ export default defineUserConfig({
                     ]
                 },
             ],
-            "/blogs/back-end/concurrent": [
+            "/blogs/back-end/concurrent/": [
                 {
                     text: "并发编程",
                     children: [
@@ -135,18 +132,6 @@ export default defineUserConfig({
                     {text: '并发编程', link: '/blogs/back-end/concurrent/multiThread.html'},
                 ]
             },
-            // {
-            //     text: "标签",
-            //     icon: 'Tag',
-            //     children: [
-            //         {text: 'JVM', link: '/categories/JVM/1/'},
-            //         {text: '并发编程', link: '/categories/concurrent/1/'},
-            //         {text: '优化', link: '/categories/optimize/1/'},
-            //         {text: 'Mac', link: '/categories/Mac/1/'},
-            //         {text: 'Node', link: '/categories/Node/1/'},
-            //         {text: '工具', link: '/categories/tools/1/'},
-            //     ]
-            // },
             // {text: '笔记', link: '/blogs/notes/note1', icon: 'Document'},
             // {text: '书籍', link: '/blogs/books/catalogue.html', icon: 'Book'},
             // {text: 'workflow', link: '/blogs/workflow/workflow1', icon: 'LoadBalancerVpc'},
@@ -221,7 +206,6 @@ export default defineUserConfig({
                     buttonText: '搜索',
                 }
             },
-            insights: true, // Optional, automatically send insights when user interacts with search results
             algoliaOptions: {'facetFilters': ["lang:$LANG"]},
             debug: false, // Set debug to true if you want to inspect the dropdown
         },
