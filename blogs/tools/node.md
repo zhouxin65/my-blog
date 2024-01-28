@@ -2,10 +2,10 @@
 title: Node.js 版本管理工具
 date: 2023-12-06
 categories:
-  - Node
+  - 环境配置
 tags:
+  - 环境配置
   - Node
-#sticky: 1
 ---
 
 # Node.js 版本管理工具

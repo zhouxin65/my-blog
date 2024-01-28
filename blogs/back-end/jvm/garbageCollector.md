@@ -5,7 +5,6 @@ categories:
   - JVM
 tags:
   - JVM
-sticky: 1
 ---
 
 # JVM 垃圾收集器

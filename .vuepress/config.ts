@@ -1,5 +1,5 @@
 import {defineUserConfig} from "vuepress";
-import recoTheme from "vuepress-theme-reco";
+import {recoTheme} from "vuepress-theme-reco";
 import katex from 'markdown-it-katex';
 import {seoPlugin} from 'vuepress-plugin-seo2';
 import {googleAnalyticsPlugin} from '@vuepress/plugin-google-analytics';
@@ -10,7 +10,7 @@ export default defineUserConfig({
     description: "心有千言，言不尽意",
     port: 8001,
     dest: "dist",
-    shouldPrefetch: false,
+    shouldPrefetch: true,
     head: [
         ["link", {rel: "icon", href: "/cat-avatar.jpg"}],
         ['link', {rel: 'stylesheet', href: '/css/katex.min.css'}],
@@ -22,6 +22,17 @@ export default defineUserConfig({
                 content: "鑫旺心语官网",
             },
         ],
+
+        ['script', {},
+          `var _hmt = _hmt || [];
+          (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?05461e524359755afd727f3110418045";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+          })();`
+        ]
+
     ],
     lang: 'zh-CN',
     theme: recoTheme({
@@ -124,18 +135,18 @@ export default defineUserConfig({
                     {text: '并发编程', link: '/blogs/back-end/concurrent/multiThread.html'},
                 ]
             },
-            {
-                text: "标签",
-                icon: 'Tag',
-                children: [
-                    {text: 'JVM', link: '/categories/JVM/1/'},
-                    {text: '并发编程', link: '/categories/concurrent/1/'},
-                    {text: '优化', link: '/categories/optimize/1/'},
-                    {text: 'Mac', link: '/categories/Mac/1/'},
-                    {text: 'Node', link: '/categories/Node/1/'},
-                    {text: '工具', link: '/categories/tools/1/'},
-                ]
-            },
+            // {
+            //     text: "标签",
+            //     icon: 'Tag',
+            //     children: [
+            //         {text: 'JVM', link: '/categories/JVM/1/'},
+            //         {text: '并发编程', link: '/categories/concurrent/1/'},
+            //         {text: '优化', link: '/categories/optimize/1/'},
+            //         {text: 'Mac', link: '/categories/Mac/1/'},
+            //         {text: 'Node', link: '/categories/Node/1/'},
+            //         {text: '工具', link: '/categories/tools/1/'},
+            //     ]
+            // },
             // {text: '笔记', link: '/blogs/notes/note1', icon: 'Document'},
             // {text: '书籍', link: '/blogs/books/catalogue.html', icon: 'Book'},
             // {text: 'workflow', link: '/blogs/workflow/workflow1', icon: 'LoadBalancerVpc'},

@@ -1,11 +1,10 @@
 ---
 title: HomeBrew 包管理工具
 date: 2023-12-11
-#categories:
-#  - tools
+categories:
+  - 环境配置
 tags:
-  - tools
-#sticky: 1
+  - 环境配置
 ---
 # HomeBrew 安装
 

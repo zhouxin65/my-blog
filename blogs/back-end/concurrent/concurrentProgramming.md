@@ -2,10 +2,9 @@
 title: 并发编程
 date: 2024-01-24
 categories:
-  - concurrent
+  - 并发编程
 tags:
-  - concurrent
-sticky: 1
+  - 并发编程
 ---
 
 # 并发编程

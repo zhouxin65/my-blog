@@ -5,7 +5,6 @@ categories:
   - JVM
 tags:
   - JVM
-sticky: 1
 ---
 
 # 1. JVM 虚拟机概述

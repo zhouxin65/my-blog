@@ -2,9 +2,9 @@
 home: true
 modules:
   - BannerBrand
-#  - Blog
+  - Blog
   - MdContent
-  - Comment
+#  - Comment
   - Footer
 bannerBrand:
   bgImage: '/bg.svg'
@@ -16,9 +16,9 @@ bannerBrand:
 #    - { text: 笔记, link: '/blogs/notes/note1.html', type: 'plain' }
   socialLinks:
     - { icon: 'LogoGithub', link: 'https://github.com/zhouxin65' }
-#blog:
-#  socialLinks:
-#    - { icon: 'LogoGithub', link: 'https://github.com/zhouxin65' }
+blog:
+  socialLinks:
+    - { icon: 'LogoGithub', link: 'https://github.com/zhouxin65' }
 #    - { icon: 'LogoGithub', link: 'https://juejin.cn/user/422676380792632' }
 
 # 底部模块配置

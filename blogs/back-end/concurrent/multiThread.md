@@ -2,10 +2,10 @@
 title: 多线程
 date: 2024-01-23
 categories:
-  - concurrent
+  - 并发编程
 tags:
-  - concurrent
-sticky: 1
+  - 多线程
+  - 并发编程
 ---
 
 # 多线程

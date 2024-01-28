@@ -2,10 +2,10 @@
 title: Mac 平台
 date: 2023-12-06
 categories:
-  - Mac
+  - 环境配置
 tags:
+  - 环境配置
   - Mac
-#sticky: 1
 ---
 
 # Mac 平台
