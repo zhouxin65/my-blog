@@ -30,7 +30,7 @@ tags:
 
 <img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131248038.png" alt="image-20240113124837023" style="zoom: 33%;" />
 
-**堆内存中主要存在三种引用关系：**
+**堆内存中主要存在三种引用关系**：
 
 - 单一引用
 - 循环引用
@@ -42,9 +42,9 @@ tags:
 
 #### 1.2.2 可达性分析法（根搜索法）
 
-通过 GCRoots 作为对象起点向下搜索，当一个对象到 GCRoots 没有任何**引用链**时**，此对象是垃圾**。
+通过 GCRoots 作为对象起点向下搜索，当一个对象到 GCRoots 没有任何**引用链**时，**此对象是垃圾**。
 
-- **引用链（ReferenceChain）：**GCRoots 搜索走过的路径
+- **引用链（ReferenceChain）**：GCRoots 搜索走过的路径
 - **什么是 GCRoots ？**
   - 虚拟机栈中，栈帧本地变量表引用的对象
   - 方法区中，类静态属性引用的对象
@@ -54,13 +54,13 @@ tags:
 
 <img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131252142.png" alt="image-20240113125228125" style="zoom:33%;" />
 
-**垃圾对象死亡前至少经历两次标记：**
+**垃圾对象死亡前至少经历两次标记**：
 
-- **第一次标记：**可达性分析后，没有引用链对象会被第一次标记
-- **第二次标记：**标记后的对象会经历筛选，如果筛选不通过，则会被第二次标记。第二次标记成功的对象将被回收
+- **第一次标记**：可达性分析后，没有引用链对象会被第一次标记
+- **第二次标记**：标记后的对象会经历筛选，如果筛选不通过，则会被第二次标记。第二次标记成功的对象将被回收
   - 筛选条件：此对象是否有必要执行`finalize()` 方法。在 `finalize()` 方法中没有重新与引用链建立关联关系的，将被进行第二次标记。
 
-**对象引用：**
+**对象引用**：
 
 JDK 1.2 之后，Java 对象的引用进行了扩充：**强引用，软引用**，弱引用，虚引用
 
@@ -113,7 +113,7 @@ boolean enqueued = pf.isEnqueued();//返回是否从内存中已经删除
 
 ### 1.3 如何清除垃圾？
 
-**三种清除垃圾算法：**
+**三种清除垃圾算法**：
 
 - 标记 - 清除算法（Mark-Sweep）
 - 标记 - 复制算法（Copying ）
@@ -124,7 +124,7 @@ boolean enqueued = pf.isEnqueued();//返回是否从内存中已经删除
 - 分为**标记**和**清除**两个阶段：
   - 标记：标记出所有需要回收对象
   - 清除：统一回收掉所有对象
-- **缺点：**
+- **缺点**：
   - 执行效率不稳定
   - 空间碎片：会产生大量不连续内存碎片
 
@@ -151,26 +151,26 @@ boolean enqueued = pf.isEnqueued();//返回是否从内存中已经删除
 - 清除：统一回收掉所有对象
 - 整理：将所有存活对象向一端移动
 
-**优缺点：**
+**优缺点**：
 
 - 优点：空间没有浪费，没有内存碎片化问题
 - 缺点：性能较低
 
 <img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131342700.png" alt="image-20240113134237659" style="zoom:33%;" />
 
-**分代回收：**
+**分代回收**：
 
 当前商业虚拟机都是采用这种算法。根据对象的存活周期的不同将内存划分为几块。
 
-- 新生代：选择**复制算法**，**弱分代假说**
-- 老年代：选择**标记-清除**或**标记-整理**，**强分代假说**
+- 新生代：选择**复制算法，弱分代假说**
+- 老年代：选择**标记-清除或标记-整理，强分代假说**
 
 #### 1.3.4 用什么清除垃圾？
 
 **有8 种不同的垃圾回收器**，它们分别用于不同分代的垃圾回收。
 
-- **新生代（复制算法）：**Serial，ParNew，Parallel Scavenge
-- **老年代（标记-清除、标记-整理）：**SerialOld，Parallel Old，CMS
+- **新生代（复制算法）**：Serial，ParNew，Parallel Scavenge
+- **老年代（标记-清除、标记-整理）**：SerialOld，Parallel Old，CMS
 - **整堆**：G1，ZGC
 
 ![image-20240113134452673](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131344701.png)
@@ -188,12 +188,12 @@ boolean enqueued = pf.isEnqueued();//返回是否从内存中已经删除
 
 ### 2.1 Serial 收集器：Serial 与 SerialOld
 
-**配置参数：** `**-XX:+UseSerialGC**`
+**配置参数**： **-XX:+UseSerialGC**
 
-**特点：**
+**特点**：
 
 - **Serial** 新生代收集器，单线程执行，使用复制算法
-- **SerialOld **老年代收集器，单线程执行，使用标记-整理算法
+- **SerialOld** 老年代收集器，单线程执行，使用标记-整理算法
 - 进行垃圾收集时，必须暂停用户线程
 
 ![image-20240113135833788](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131358808.png)
@@ -202,7 +202,7 @@ boolean enqueued = pf.isEnqueued();//返回是否从内存中已经删除
 
 ### 3.1 Parallel Scavenge 收集器
 
-**配置参数：** `-XX:+UseParallelGC`
+**配置参数**： `-XX:+UseParallelGC`
 
 **特点：简称PS**
 
@@ -217,9 +217,9 @@ boolean enqueued = pf.isEnqueued();//返回是否从内存中已经删除
 
 ### 3.2 Parallel Old 收集器
 
-**配置参数：** `-XX:+UseParallelOldGC`
+**配置参数**： `-XX:+UseParallelOldGC`
 
-**特点：**
+**特点**：
 
 - **PS收集器的老年代版本**
 
@@ -231,13 +231,13 @@ boolean enqueued = pf.isEnqueued();//返回是否从内存中已经删除
 
 ### 3.3 ParNew 收集器
 
-**配置参数：**
+**配置参数**：
 
 - `-XX:+UseParNewGC`
 
 - `-XX:ParallelGCThreads=n`，垃圾收集线程数
 
-**特点：**
+**特点**：
 
 - **新生代并行 ParNew，老年代串行 SerialOld**
 
@@ -249,9 +249,9 @@ boolean enqueued = pf.isEnqueued();//返回是否从内存中已经删除
 
 ### 3.4 CMS 收集器
 
-**配置参数：**` -XX:+UseConcMarkSweepGC`
+**配置参数**：` -XX:+UseConcMarkSweepGC`
 
-**特点：**
+**特点**：
 
 - **低延时，减少STW对用户的影响**
 
@@ -263,22 +263,22 @@ boolean enqueued = pf.isEnqueued();//返回是否从内存中已经删除
 
 ![image-20240113141756512](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131417536.png)
 
-1. **初始标记阶段：会 STW，**标记出 GCRoots 可以关联到的对象，关联对象较少，所以很快
-2. **并发标记阶段：不会 STW，**遍历 GCRoots 直接对象的引用链，耗时长
-3. **重新标记阶段：会 STW，**修正并发标记期间的新对象记录
+1. **初始标记阶段：会 STW**，标记出 GCRoots 可以关联到的对象，关联对象较少，所以很快
+2. **并发标记阶段：不会 STW**，遍历 GCRoots 直接对象的引用链，耗时长
+3. **重新标记阶段：会 STW**，修正并发标记期间的新对象记录
 4. **并发清除阶段：不会 STW**，清除垃圾对象，释放内存空间
 
 ### 3.5 G1（Garbage-First）收集器
 
-**G1 是一款面向服务端应用的全功能型垃圾收集器**，**大内存**企业配置的主要是 G1**。**
+**G1 是一款面向服务端应用的全功能型垃圾收集器，大内存企业配置的主要是 G1**。
 
-**配置参数：**`-XX:+UseG1GC`
+**配置参数**：`-XX:+UseG1GC`
 
 **特点：G1**
 
 - 吞吐量和低延时都行的**整堆垃圾收集器**
 
-- **G1 最大堆内存**32M \* 2048=64GB，**最小堆内存 **1M * 2048=2GB，低于此值不建议使用
+- **G1 最大堆内存 32M \* 2048=64GB，最小堆内存 1M * 2048 = 2 GB**，低于此值不建议使用
 
 - 全局使用**标记-整理算法**收集，局部采用**复制算法**收集
 
@@ -286,22 +286,22 @@ boolean enqueued = pf.isEnqueued();//返回是否从内存中已经删除
 
 ![image-20240113142148932](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131421959.png)
 
-1. **初始标记：会 STW，**标记出 GCRoots 可以关联到的对象，耗时短
-2. **并发标记：不会 STW，**遍历 GCRoots 直接对象的引用链，耗时长
-3. **最终标记：会 STW，**修正并发标记期间，标记产生变动的那部分
+1. **初始标记：会 STW**，标记出 GCRoots 可以关联到的对象，耗时短
+2. **并发标记：不会 STW**，遍历 GCRoots 直接对象的引用链，耗时长
+3. **最终标记：会 STW**，修正并发标记期间，标记产生变动的那部分
 4. **筛选回收：会 STW**，对各个 Region 的**回收价值和成本排序**，根据用户期望 GC 停顿时间确定回收计划
 
 G1中有三种模式垃圾回收模式，**Young GC、Mixed GC 和 Full GC**，在不同的条件下被触发。
 
-**G1 内存划分：**
+**G1 内存划分**：
 
-- **取消新生代与老年代的物理划分：**采用若干个固定大小的 Region
+- **取消新生代与老年代的物理划分**：采用若干个固定大小的 Region
 
-- **Region区类型：**在逻辑上有 Eden、Survivor、Old、Humongous
+- **Region区类型**：在逻辑上有 Eden、Survivor、Old、Humongous
 
-- **垃圾收集算法：**全局采用标记-整理算法，局部采用复制算法
+- **垃圾收集算法**：全局采用标记-整理算法，局部采用复制算法
 
-- **Humongous区域：**当对象的容量超过了 Region 的50%，则被认为是巨型对象
+- **Humongous区域**：当对象的容量超过了 Region 的50%，则被认为是巨型对象
 
 <img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131425727.png" alt="image-20240113142554627" style="zoom:50%;" />
 
@@ -326,9 +326,9 @@ G1中有三种模式垃圾回收模式，**Young GC、Mixed GC 和 Full GC**，�
 
 ZGC （Z Garbage Collector ）在JDK11中引入的一种**可扩展的低延迟垃圾收集器**，在 JDK15 中发布稳定版。
 
-**配置参数：** `-XX:+UseZGC`
+**配置参数**： `-XX:+UseZGC`
 
-**特点：**
+**特点**：
 
 - **< 1ms 最大暂停时间（JDK 16 是10ms，JDK16+ <1ms ），不会随着堆内存增加而增加**
 

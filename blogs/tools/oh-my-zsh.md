@@ -81,7 +81,7 @@ git clone https://github.com/dracula/iterm.git
 
 ## 插件安装
 
-### 命令高亮插件**[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)**(命令正确绿色，命令错误红色)
+### **命令高亮插件[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)**(命令正确绿色，命令错误红色)
 
 ```bash
 # 下载命令高亮插件 这里下载到用户名下.zsh文件夹下
@@ -94,7 +94,7 @@ vim ~/.zshrc
 
 ![image-20231211171614340](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202312111716373.png)
 
-### 命令提示插件**[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)**
+### **命令提示插件[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)**
 
 ```bash
 # 下载命令提示插件

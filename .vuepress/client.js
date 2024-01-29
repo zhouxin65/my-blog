@@ -3,6 +3,9 @@ import { defineClientConfig, usePageData } from '@vuepress/client';
 import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill';
 
 export default defineClientConfig({
+  enhance({ app, router, siteData }) {
+
+  },
   setup() {
     onMounted(() => {
       polyfillCountryFlagEmojis();

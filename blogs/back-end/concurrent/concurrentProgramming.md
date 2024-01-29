@@ -25,9 +25,9 @@ tags:
 
 JDK 1.5 之后，JUC 的 atomic 包中，提供了一系列**用法简单、性能高效、线程安全的更新一个变量的类**，这些称之为原子类。
 
-**作用：**保证共享变量操作的原子性、可见性，可以解决 volatile 原子性操作变量的 BUG
+**作用**：保证共享变量操作的原子性、可见性，可以解决 volatile 原子性操作变量的 BUG
 
-#### 2.1.2 **Atomic 包里的类：**
+#### 2.1.2 **Atomic 包里的类**：
 
 - **基本类型 - 使用原子的方式更新基本类型**
   - AtomicInteger：整形原子类
@@ -72,7 +72,7 @@ compareAndSet(int, int) // 尝试新增后对比，若增加成功则返回 true
 
 #### 2.1 CAS 是什么？
 
-CAS 即 **compare and swap（比较再替换），**同步组件中大量使用 CAS 技术实现了 Java 多线程的并发操作。整个 AQS、Atomic 原子类底层操作，都可以看见 CAS。甚至 ConcurrentHashMap 在 1.8 的版本中也调整为了 CAS + Synchronized。可以说 CAS 是整个 JUC 的基石。
+CAS 即 **compare and swap（比较再替换）**，同步组件中大量使用 CAS 技术实现了 Java 多线程的并发操作。整个 AQS、Atomic 原子类底层操作，都可以看见 CAS。甚至 ConcurrentHashMap 在 1.8 的版本中也调整为了 CAS + Synchronized。可以说 CAS 是整个 JUC 的基石。
 
 **执行函数：CAS ( V , E , N)**
 
@@ -90,11 +90,11 @@ CAS 即 **compare and swap（比较再替换），**同步组件中大量使用 
 
 CAS 虽然很好的解决了共享变量的原子操作问题，但还是有一些缺陷:
 
-- **循环时间不可控：**如果 CAS 一直不成功，那么 CAS 自旋就是个死循环。会给 CPU 造成负担
+- **循环时间不可控**：如果 CAS 一直不成功，那么 CAS 自旋就是个死循环。会给 CPU 造成负担
 
 - **只能保证一个共享变量原子操作**
 
-- **ABA 问题：**CAS 检查操作的值有没有发生改变，如果没有则更新。这就存在一种情况：如果原来的值是 A，然后变成了 B，然后又变为 A 了，那么 CAS 检测不到数据发生了变化，但是其实数据已经改变了。
+- **ABA 问题**：CAS 检查操作的值有没有发生改变，如果没有则更新。这就存在一种情况：如果原来的值是 A，然后变成了 B，然后又变为 A 了，那么 CAS 检测不到数据发生了变化，但是其实数据已经改变了。
 
 ## 3. Lock 锁与 AQS
 
@@ -102,9 +102,9 @@ CAS 虽然很好的解决了共享变量的原子操作问题，但还是有一�
 
 **JUC 包提供了种类丰富的锁，每种锁特性各不相同**：
 
-- **ReentrantLock 重入锁：**它具有与使用 synchronized 相同的一些基本行为和语义，但是它的 API 功能更强大，重入锁相当于 synchronized 的增强版，具有 synchronized 很多所没有的功能。它是一种 **独享锁（互斥锁）**，可以是**公平锁**，也可以是**非公平的锁**。
+- **ReentrantLock 重入锁**：它具有与使用 synchronized 相同的一些基本行为和语义，但是它的 API 功能更强大，重入锁相当于 synchronized 的增强版，具有 synchronized 很多所没有的功能。它是一种 **独享锁（互斥锁）**，可以是**公平锁**，也可以是**非公平的锁**。
 
-- **ReentrantReadWriteLock 读写锁：**它维护了一对锁，ReadLock 读锁和 WriteLock 写锁。读写锁适合**读多写少**的场景。基本原则：**读锁可以被多个线程同时持有进行访问，而写锁只能被一个线程持有。**可以这么理解：**读写锁是个混合体，它既是一个共享锁，也是一个独享锁。**
+- **ReentrantReadWriteLock 读写锁**：它维护了一对锁，ReadLock 读锁和 WriteLock 写锁。读写锁适合**读多写少**的场景。基本原则：**读锁可以被多个线程同时持有进行访问，而写锁只能被一个线程持有。**可以这么理解**：读写锁是个混合体，它既是一个共享锁，也是一个独享锁。**
 
 - **StampedLock 重入读写锁**：JDK 1.8 引入的锁类型，是对读写锁 ReentrantReadWriteLock 的增强版。
 
@@ -112,8 +112,8 @@ CAS 虽然很好的解决了共享变量的原子操作问题，但还是有一�
 
 #### 3.2.1 **按上锁方式划分**
 
-- **隐式锁：synchronized，**不需要显示加锁和解锁
-- **显式锁：JUC 包中提供的锁，**需要显示加锁和解锁
+- **隐式锁：synchronized**，不需要显示加锁和解锁
+- **显式锁：JUC 包中提供的锁**，需要显示加锁和解锁
 
 #### 3.2.2 按特性划分
 
@@ -143,11 +143,11 @@ CAS 虽然很好的解决了共享变量的原子操作问题，但还是有一�
 
 #### 3.3.3 其他锁
 
-**自旋锁：**
+**自旋锁**：
 
 - 实现：CAS、轻量级锁
 
-**分段锁：**
+**分段锁**：
 
 - 实现：ConcurrentHashMap
 
@@ -165,7 +165,7 @@ CAS 虽然很好的解决了共享变量的原子操作问题，但还是有一�
 
 **Java 已经提供了synchronized，为什么还要使用 JUC 的锁呢？**
 
-**Synchronize的缺陷：**
+**Synchronize的缺陷**：
 
 - **Synchronized 无法控制阻塞时长，阻塞不可中断**
 
@@ -382,7 +382,7 @@ static final Node EXCLUSIVE = null;//独占模式
 2. 若发生异常，取消当前线程获得锁的资格。
 
 ```java
-		/**
+	/**
      * 等待队列中的线程以独占的模式获取锁
      *
      * @param node 新加入等待队列线程节点
@@ -446,7 +446,7 @@ Node 有 5 种状态，分别是：
 - -3：PROPAGATE，传播。在一个节点成为头节点之前，是不会跃迁为 PROPAGATE 状态的。用于将唤醒后继线程传递下去，这个状态的引入是为了完善和增强共享锁的唤醒机制。
 
 ```java
-		/**
+	/**
      * 是否需要阻塞当前线程，根据前驱节点中的waitStatus来判断是否需要阻塞当前线程。如果线
      * 程需要被阻塞，返回true，这是自旋中的主要的信号量。
      *
@@ -495,7 +495,7 @@ Node 有 5 种状态，分别是：
 `LockSupport.park(this)` 会阻塞当前线程，会使当前线程（如 Thread B）处于等待状态，不再往下执行。
 
 ```java
-		/**
+	/**
      * 将当前线程阻塞，并且在被唤醒时检查是否被中断
      *
      * @return {@code true} 如果被中断，返回true
@@ -575,7 +575,7 @@ public final boolean release(int arg) {
 3. 返回 true 说明当前锁被释放，需要唤醒同步队列中的一个线程，执行 unparkSuccessor 唤醒同步队列中节点线程。
 
 ```java
-		/**
+	/**
      * 释放锁返回值：true释放成功；false释放失败
      */
     protected final boolean tryRelease(int releases) {
@@ -626,11 +626,11 @@ public final boolean release(int arg) {
 
 ### 3.7 公平锁和非公平锁的区别
 
-**公平锁/非公平锁：**按照多个线程竞争同一锁时需不需要排队，能不能插队
+**公平锁/非公平锁**：按照多个线程竞争同一锁时需不需要排队，能不能插队
 
-**获取锁的两处差异：**
+**获取锁的两处差异**：
 
-- **lock 方法差异：**
+- **lock 方法差异**：
 
   - FairSync.lock：公平锁获取锁
 
@@ -660,7 +660,7 @@ public final boolean release(int arg) {
   }
   ```
 
-- **tryAcquire差异：**
+- **tryAcquire差异**：
 
   - `FairSync.tryAcquire`：公平锁获取锁，若锁为无锁状态时，本着公平原则，新线程在尝试获得锁前，需先判断 AQS 同步队列中是否有线程在等待，若有线程在等待，当前线程只能进入同步队列等待。若 AQS 同步无线程等待，则通过 CAS 抢占锁。而非公平锁，不管 AQS 是否有线程在等待，则都会先通过 CAS 抢占锁。
 
@@ -716,11 +716,11 @@ public final boolean release(int arg) {
 
 ### 3.8 读写锁 ReentrantReadWriteLock
 
-**读写锁：维护着一对锁(读锁和写锁)，**通过分离读锁和写锁，使得并发能力比一般的互斥锁有较大提升。**同一时间，可以允许多个读线程同时访问，但在写线程访问时，所有读写线程都会阻塞。**
+**读写锁：维护着一对锁(读锁和写锁)**，通过分离读锁和写锁，使得并发能力比一般的互斥锁有较大提升。**同一时间，可以允许多个读线程同时访问，但在写线程访问时，所有读写线程都会阻塞。**
 
 所以说，读锁是共享的，写锁是排他的。
 
-**主要特性：**
+**主要特性**：
 
 - 支持公平和非公平锁
 
@@ -729,7 +729,7 @@ public final boolean release(int arg) {
 - 锁降级：写锁可以降级为读锁，但是读锁不能升级为写锁
 
 ```java
-		/**
+	/**
      * 内部类 读锁
      */
     private final ReentrantReadWriteLock.ReadLock readerLock;
@@ -820,16 +820,16 @@ ReentrantReadWriteLock 与 ReentrantLock一样，其锁主体依然是 Sync，�
 
 ## 4. 线程协作工具类
 
-**线程协作工具类，**控制线程协作的工具类，帮助程序员让线程之间的协作变得更加简单
+**线程协作工具类**，控制线程协作的工具类，帮助程序员让线程之间的协作变得更加简单
 
-| 类             | 作用                                                         | 说明                                                      |
-| -------------- | ------------------------------------------------------------ | --------------------------------------------------------- |
-| Semaphore      | 信号量，通过控制**许可**的数量来保证线程之间的配合           | **场景：限流**，只有拿到**许可**才可运行                  |
-| CyclicBarrier  | 线程会等待，直到线程到了事先规定的数目，然后触发执行条件进行下一步动作 | **场景：并行计算**（线程之间相互等待处理结果就绪的场景）  |
-| CountDownLatch | 线程处于等待状态，指导计数减为0，等待线程才继续执行          | **场景：购物拼团**                                        |
-| Condition      | 控制线程的**等待 / 唤醒**                                    | **场景：线程协作 **`Object.wait()` 和` notify()` 的升级版 |
+| 类             | 作用                                                         | 说明                                            |
+| -------------- | ------------------------------------------------------------ |-----------------------------------------------|
+| Semaphore      | 信号量，通过控制**许可**的数量来保证线程之间的配合           | **场景：限流**，只有拿到**许可**才可运行                      |
+| CyclicBarrier  | 线程会等待，直到线程到了事先规定的数目，然后触发执行条件进行下一步动作 | **场景：并行计算**（线程之间相互等待处理结果就绪的场景）                |
+| CountDownLatch | 线程处于等待状态，指导计数减为0，等待线程才继续执行          | **场景：购物拼团**                                   |
+| Condition      | 控制线程的**等待 / 唤醒**                                    | **场景：线程协作** `Object.wait()` 和` notify()` 的升级版 |
 
-### 4.1 **CountDownLatch 计数门闩：**
+### 4.1 **CountDownLatch 计数门闩**：
 
 - 倒数结束之前，一直处于等待状态，直到数到0，等待线程才继续工作。
 - 场景：购物拼团、分布式锁
@@ -838,7 +838,7 @@ ReentrantReadWriteLock 与 ReentrantLock一样，其锁主体依然是 Sync，�
   - await()：调用此方法的线程会阻塞，支持多个线程调用，当计数为0，则唤醒线程
   - countdown()：其他线程调用此方法，计数减1
 
-### 4.2 **Semaphore 信号量：**
+### 4.2 **Semaphore 信号量**：
 
 - 限制和管理数量有限的资源的使用
 - 场景：Hystrix、Sentinel限流
@@ -847,7 +847,7 @@ ReentrantReadWriteLock 与 ReentrantLock一样，其锁主体依然是 Sync，�
   - acquire()：获取许可证，获取许可证，要么获取成功，信号量减1，要么阻塞等待唤醒
   - release()：释放许可证，信号量加1，然后唤醒等待的线程
 
-### 4.3 **CyclicBarrier 循环栅栏：**
+### 4.3 **CyclicBarrier 循环栅栏**：
 
 - 线程会等待，直到线程到了事先规定的数目，然后触发执行条件进行下一步动作
 - 场景：并行计算
@@ -855,12 +855,12 @@ ReentrantReadWriteLock 与 ReentrantLock一样，其锁主体依然是 Sync，�
   - new CyclicBarrier(int parties, Runnable barrierAction)参数 1 集结线程数，参数 2 凑齐之后执行的任务
   - await()：阻塞当前线程，待凑齐线程数量之后继续执行
 
-**CyclicBarrier 和 CountDownLatch 区别：**
+**CyclicBarrier 和 CountDownLatch 区别**：
 
 - 作用不同：CyclicBarrier 要等固定数量的线程都到达了栅栏位置才能继续执行，而 CountDownLatch 只需要等待数字到 0，也就是说，CountDownLatch 用于事件，而 CyclicBarrier 用于线程
 - 可重用性不同：CountDownLatch 在倒数到 0 并触发门闩打开后，就不能再次使用，而 CyclicBarrier 可以重复使用。
 
-### 4.4 **Condition接口：**
+### 4.4 **Condition接口**：
 
 - 控制线程的 “等待” 和 “唤醒” 
 - 方法：
@@ -952,9 +952,9 @@ ReentrantReadWriteLock 与 ReentrantLock一样，其锁主体依然是 Sync，�
 
 **优缺点**
 
-- **优点：**对于读多写少的场景，CopyOnWrite 这种无锁操作性能更好，相比于其它同步容器
+- **优点**：对于读多写少的场景，CopyOnWrite 这种无锁操作性能更好，相比于其它同步容器
 
-- **缺点：**
+- **缺点**：
   - 数据一致性问题
   - 内存占用问题及导致更多的 GC 次数
 
@@ -971,7 +971,7 @@ ReentrantReadWriteLock 与 ReentrantLock一样，其锁主体依然是 Sync，�
 - take 方法：获取并移除头元素，**如果队列无数据，则阻塞**
 - put 方法：插入元素，**如果队列已满，则阻塞**
 
-- **阻塞队列又分为有界和无界队列，**无界队列不是无限队列，最大值 `Integer.MAX_VALUE`
+- **阻塞队列又分为有界和无界队列**，无界队列不是无限队列，最大值 `Integer.MAX_VALUE`
 
 <img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401242219536.png" alt="image-20240124221930497" style="zoom: 33%;" />
 
@@ -993,19 +993,19 @@ ReentrantReadWriteLock 与 ReentrantLock一样，其锁主体依然是 Sync，�
 
 **优点**
 
-- **降低资源消耗：**通过线程池复用线程，降低创建线程和释放线程的损耗
+- **降低资源消耗**：通过线程池复用线程，降低创建线程和释放线程的损耗
 
-- **提高响应速度：**任务到达时，无需等待即刻运行
+- **提高响应速度**：任务到达时，无需等待即刻运行
 
-- **提高线程的可管理性：**使用线程池可以进行统一的线程分配、调优和监控
+- **提高线程的可管理性**：使用线程池可以进行统一的线程分配、调优和监控
 
-- **提供可扩展性：**线程池具备可扩展性，研发人员可以向其中增加各种功能，比如：延时、定时、监控等
+- **提供可扩展性**：线程池具备可扩展性，研发人员可以向其中增加各种功能，比如：延时、定时、监控等
 
 **使用场景**
 
-- **连接池：**预先申请数据库连接，提升申请连接的速度，降低系统的开销（跨网络应用都需要线程池）
+- **连接池**：预先申请数据库连接，提升申请连接的速度，降低系统的开销（跨网络应用都需要线程池）
 
-- **线程隔离：**服务器接收大量请求，使用线程池来进行隔离处理
+- **线程隔离**：服务器接收大量请求，使用线程池来进行隔离处理
 
 开发中，如需创建 5 个以上线程，就可以考虑用线程池
 
@@ -1020,7 +1020,7 @@ ReentrantReadWriteLock 与 ReentrantLock一样，其锁主体依然是 Sync，�
 | threadFactory | ThreadFactory            | 线程池创建新线程的线程工厂类 |
 | Handler       | RejectedExecutionHandler | 线程无法接收任务时的拒绝策略 |
 
-**参数详解：**
+**参数详解**：
 
 - corePoolSize：核心线程数，可以理解为空闲线程数，即便线程空闲（Idle），也不会回收
 
@@ -1052,7 +1052,7 @@ ReentrantReadWriteLock 与 ReentrantLock一样，其锁主体依然是 Sync，�
 
 ### 6.4 自动创建线程
 
-**四种：**
+**四种**：
 
 - **newFixedThreadPool**：固定数量线程池，无界任务阻塞队列
 
@@ -1085,19 +1085,19 @@ public ThreadPoolExecutor(
 
 - **IO 密集型**：IO 密集型 CPU 使用率不高，可以设置的线程数量多一些，可以设置为 CPU 核心数的2倍
 
-**拒绝策略：**
+**拒绝策略**：
 
-- **拒绝时机：**
+- **拒绝时机**：
   1. 最大线程和工作队列有限且已经饱和 
   2. Executor 关闭时
 
-- 抛异常策略：**AbortPolicy，**说明任务没有提交成功
+- 抛异常策略：**AbortPolicy**，说明任务没有提交成功
 
-- 不做处理策略：**DiscardPolicy，**默默丢弃任务，不做处理
+- 不做处理策略：**DiscardPolicy**，默默丢弃任务，不做处理
 
-- 丢弃老任务策略：**DiscardOldestPolicy，**将队列中存在最久的任务给丢弃
+- 丢弃老任务策略：**DiscardOldestPolicy**，将队列中存在最久的任务给丢弃
 
-- 自产自销策略：**CallerRunsPolicy，**那个线程提交任务就由那个线程负责运行
+- 自产自销策略：**CallerRunsPolicy**，那个线程提交任务就由那个线程负责运行
 
 ## 7. ThreadLocal
 
@@ -1105,11 +1105,11 @@ public ThreadPoolExecutor(
 
 ### 7.1 什么是 ThreadLocal？
 
-**ThreadLocal 是线程本地变量类，**在多线程并执行过程中，将变量存储在 ThreadLocal 中，每个线程中都有独立的变量，因此不会出现线程安全问题。
+**ThreadLocal 是线程本地变量类**，在多线程并执行过程中，将变量存储在 ThreadLocal 中，每个线程中都有独立的变量，因此不会出现线程安全问题。
 
 **举例：**
 
-- **解决线程安全问题：**每个线程绑定一个数据库连接，避免多个线程访问同一个数据库连接：**SqlSession**
+- **解决线程安全问题**：每个线程绑定一个数据库连接，避免多个线程访问同一个数据库连接：**SqlSession**
 
 ```java
 //伪代码
@@ -1128,7 +1128,7 @@ public Connection getConnection() {
 }
 ```
 
-- **跨函数参数传递：**同一个线程，跨类，跨方法传递参数时可以使用 ThreadLocal，每个线程绑定一个 **Token / Session**
+- **跨函数参数传递**同一个线程，跨类，跨方法传递参数时可以使用 ThreadLocal，每个线程绑定一个 **Token / Session**
 
 <img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401252212011.png" alt="image-20240125221247982" style="zoom: 50%;" />
 
@@ -1190,7 +1190,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 }
 ```
 
-**为什么 Entry 需要使用弱引用对 Key 进行包装，而不是直接使用 Threadlocal 实例作为 Key 呢？**比如如下代码:
+**为什么 Entry 需要使用弱引用对 Key 进行包装，而不是直接使用 Threadlocal 实例作为 Key 呢**？比如如下代码:
 
 ```java
 //伪代码
@@ -1241,19 +1241,19 @@ public void funcA() {
 
 ### 8.2 **Future 主要方法：**
 
-- **get()：**方法返回结果取决于Callable任务执行的状态，任务有五种状态
+- **get()** 方法返回结果取决于Callable任务执行的状态，任务有五种状态
   - 正常完成：get 立刻返回结果
   - 尚未完成：还没开始或进行中的状态，get将阻塞直到任务完成
   - 抛出异常：get 会抛出 ExecutionException
   - 被取消：get 会抛出 CancellationException
   - 超时：设置超时时间，时间到了还没结果，会抛出 TimeoutException
-- **get( timeout , TimeUnit )：**设置任务完成时间，没到则抛异常
-- **cancel()：**取消任务时，有三种情况
+- **get( timeout , TimeUnit )** 设置任务完成时间，没到则抛异常
+- **cancel()** 取消任务时，有三种情况
   - 如果这个任务还没开始，任务会被取消，返回 true
   - 如果任务已经完成或已取消，返回false
   - 如果任务已经开始，则方法不会直接取消任务，而会判断是否可以取消，如果可以才会发出中断信号
-- **isDone() ：**判断是否执行完成
-- **isCancelled()：**判断是否被取消
+- **isDone()** 判断是否执行完成
+- **isCancelled()** 判断是否被取消
 
 ### 8.3 用线程池 submit 方法提交任务，返回值 Future 任务结果
 

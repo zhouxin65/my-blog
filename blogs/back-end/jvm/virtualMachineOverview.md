@@ -6,7 +6,6 @@ categories:
 tags:
   - JVM
 ---
-
 # 1. JVM 虚拟机概述
 
 ## 1.1 JVM 基本常识
@@ -33,7 +32,7 @@ tags:
 
 四个时机：
 
-1. 遇到`new `、`getstatic `、`putstatic` 和 `invokestatic` 这四条指令时，如果对应的类没有初始化，则要对对应的类先进行初始化
+1. 遇到 `new `、`getstatic `、`putstatic` 和 `invokestatic` 这四条指令时，如果对应的类没有初始化，则要对对应的类先进行初始化
 
 ```java
 public class Student{
@@ -46,7 +45,7 @@ public class Student{
 //new Student();
 ```
 
-2. 使用`java.lang.reflect` 包方法时，对类进行反射调用的时候
+2. 使用 `java.lang.reflect` 包方法时，对类进行反射调用的时候
 
 ```java
 Class c = Class.forname("com.hero.Student");
@@ -96,7 +95,7 @@ Class c = Class.forname("com.hero.Student");
 #### 执行顺序
 
 1. **检查顺序是自底向上**：加载过程中会先检查类是否被已加载，从 Custom 到 BootStrap 逐层检查，只要某个类加载器已加载就视为此类已加载，保证此类所有 ClassLoader 只加载一次。
-2. **加载的顺序是自顶向下：**也就是由上层来逐层尝试加载此类。
+2. **加载的顺序是自顶向下**：也就是由上层来逐层尝试加载此类。
 
 <img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202312282235090.png" alt="image-20231228223517064" style="zoom: 33%;" />
 
@@ -269,7 +268,10 @@ protected Class<?> loadClass(String name, boolean resolve)
 
 方式二：**SPI**，父类委托自类加载器加载Class，以数据库驱动DriverManager为例
 
-​	DriverManager源码
+```
+DriverManager源码
+```
+
 
 ```java
 static {
@@ -441,7 +443,7 @@ public static <S> ServiceLoader<S> load(Class<S> service) {
 **按照线程使用情况和职责分成两大类：**
 
 1. **线程独享（程序执行区域）**
-   - 虚拟机栈**、本地方法栈、**程序计数器
+   - **虚拟机栈、本地方法栈、程序计数器**
    - 不需要垃圾回收
 2. **线程共享（数据存储区域）**
    - **堆**和**方法区**
@@ -487,7 +489,7 @@ public static <S> ServiceLoader<S> load(Class<S> service) {
 
 - 由两部分组成，新生代（Eden + 2 * Survivor ）+ 年老代（OldGen ）
 - JDK 1.8 中变化最大是 Perm 永久区用 Metaspace 进行了替换
-- **注意：Metaspace 所占用的内存空间不是在虚拟机内部，而是在本地内存空间中。**区别于 JDK1.7
+- **注意：Metaspace 所占用的内存空间不是在虚拟机内部，而是在本地内存空间中**。区别于 JDK1.7
 
 ##### **JDK 1.9**
 
@@ -557,10 +559,12 @@ public static <S> ServiceLoader<S> load(Class<S> service) {
 
 #### 永久代和元空间的区别是什么？
 
-1.  JDK 1.8 之前使用的方法区实现是**永久代**，JDK1.8 及以后使用的方法区实现是**元空间**。
-2.  **存储位置不同**：
-   - **永久代**所使用的内存区域是 **JVM 进程所使用的区域**，它的大小受整个JVM的大小所限制。
-   - **元空间**所使用的内存区域是物理内存区域。那么元空间的使用大小只会受物理内存大小的限制。
+1. JDK 1.8 之前使用的方法区实现是**永久代**，JDK1.8 及以后使用的方法区实现是**元空间**。
+2. **存储位置不同**：
+
+- **永久代**所使用的内存区域是 **JVM 进程所使用的区域**，它的大小受整个JVM的大小所限制。
+- **元空间**所使用的内存区域是物理内存区域。那么元空间的使用大小只会受物理内存大小的限制。
+
 3. **存储内容不同**：
    - 永久代存储的信息基本上就是上面方法区存储内容中的数据。
    - 元空间只存储类的元信息，而**静态变量和运行时常量池都挪到堆中**。
@@ -568,9 +572,9 @@ public static <S> ServiceLoader<S> load(Class<S> service) {
 #### 为什么要使用元空间来替换永久代？
 
 1. **字符串存在永久代中，容易出现性能问题和永久代内存溢出。**
-2.  类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。
+2. 类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。
 3. 永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。
-4.  Oracle 计划将 HotSpot 与 JRockit 合二为一。
+4. Oracle 计划将 HotSpot 与 JRockit 合二为一。
 
 ***方法区实现变迁历史：***
 
@@ -584,7 +588,7 @@ public static <S> ServiceLoader<S> load(Class<S> service) {
 
 - **class 常量池**：一个 class 文件只有一个 class 常量池
 - **运行时常量池**：一个 class 对象有一个运行时常量池
-- **字符串常量池**：全局只有一个字符串常量池 
+- **字符串常量池**：全局只有一个字符串常量池
 
 **字面量与符号引用：**
 
@@ -595,7 +599,7 @@ public static <S> ServiceLoader<S> load(Class<S> service) {
 
 #### 字符串常量池如何存储数据？
 
-为了提高匹配速度， 即更快的查找某个字符串是否存在于常量池 Java 在设计字符串常量池的时候，还搞了一张StringTable，StringTable 里面保存了**字符串的引用**。StringTable 类似于 HashTable（哈希表）。在 JDK1.7+，StringTable 可以通过参数指定`-XX:StringTableSize=99991`
+为了提高匹配速度， 即更快的查找某个字符串是否存在于常量池 Java 在设计字符串常量池的时候，还搞了一张StringTable，StringTable 里面保存了**字符串的引用**。StringTable 类似于 HashTable（哈希表）。在 JDK1.7+，StringTable 可以通过参数指定 `-XX:StringTableSize=99991`
 
 #### 什么是哈希表呢？
 
@@ -616,7 +620,7 @@ public static <S> ServiceLoader<S> load(Class<S> service) {
 #### 字符串常量池如何查找字符串?
 
 - 根据字符串的 hashcode 找到对应 entry
-- 如果没有冲突，它可能只是一个 entry 
+- 如果没有冲突，它可能只是一个 entry
 - 如果有冲突，它可能是一个 entry 的链表，然后 Java 再遍历链表，匹配引用对应的字符串
 - 如果找到字符串，返回引用
 - 如果找不到字符串，在使用 intern() 方法的时候，会将 intern() 方法调用者的引用放入到 stringtable 中
@@ -664,11 +668,11 @@ public class StringTableDemo {
 
 <img src="https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401112236341.png" alt="image-20240111223651304" style="zoom: 33%;" />
 
-- 单独使用`””`引号创建的字符串都是常量，编译期就已经确定存储到 String Pool 中。
-- 使用`new String(“”)`创建的对象会存储到 heap 中，是运行期新创建的。
-- 使用只包含常量的字符串连接符如`”aa”+”bb”`创建的也是常量，编译期就能确定已经存储到 StringPool 中。
-- 使用包含变量的字符串连接如`”aa”+s`创建的对象是运行期才创建的，存储到 heap 中。
-- 运行期调用 String 的`intern()`方法可以向 String Pool 中动态添加对象。
+- 单独使用 `””`引号创建的字符串都是常量，编译期就已经确定存储到 String Pool 中。
+- 使用 `new String(“”)`创建的对象会存储到 heap 中，是运行期新创建的。
+- 使用只包含常量的字符串连接符如 `”aa”+”bb”`创建的也是常量，编译期就能确定已经存储到 StringPool 中。
+- 使用包含变量的字符串连接如 `”aa”+s`创建的对象是运行期才创建的，存储到 heap 中。
+- 运行期调用 String 的 `intern()`方法可以向 String Pool 中动态添加对象。
 
 ### 1.3.6 程序计数器
 
@@ -683,7 +687,7 @@ public class StringTableDemo {
 - Java 方法：记录虚拟机字节码指令地址
 - Native 方法：记录为空
 
-**异常：**唯一没有OOM异常的区域
+**异常**：唯一没有OOM异常的区域
 
 ### 1.3.7 直接内存
 
@@ -706,15 +710,15 @@ public class StringTableDemo {
 
 ![image-20240113104541015](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131045058.png)
 
-### 1.4.2 对象的内存分配方式 
+### 1.4.2 对象的内存分配方式
 
 *内存分配的方法有两种：不同垃圾收集器不一样*
 
 - **指针碰撞** (Bump the Pointer)
 - **空闲列表** (Free List)
 
-| 分配方法 | 说明                       | 收集器                             |
-| -------- | -------------------------- | ---------------------------------- |
+| 分配方法 | 说明                       | 收集器                                 |
+| -------- | -------------------------- | -------------------------------------- |
 | 指针碰撞 | 内存地址是连续的（新生代） | `serial` 和 `parNew` 收集器        |
 | 空闲列表 | 内存地址不连续（老年代）   | `CMS` 收集器和 `Mark-Sweep` 收集器 |
 
@@ -730,26 +734,24 @@ public class StringTableDemo {
 
 **怎么办？**
 
-- **CAS乐观锁：**JVM 虚拟机采用 CAS 失败重试的方式保证更新操作的原子性
+- **CAS乐观锁**：JVM 虚拟机采用 CAS 失败重试的方式保证更新操作的原子性
 - TLAB（Thread Local Allocation Buffer）**本地线程分配缓存**，预分配
 
 **对象内存分配流程【重要】：**
 
-- **分配主流程：**首先从 TLAB 里面分配，如果分配不到，再使用 CAS 从堆里面划分
+- **分配主流程**：首先从 TLAB 里面分配，如果分配不到，再使用 CAS 从堆里面划分
 
 ![image-20240113105450026](https://xinwang-1258200068.cos.ap-guangzhou.myqcloud.com/imgs/202401131054083.png)
 
 ### 1.4.4 对象怎样才会进入老年代？【重点】
 
 - 新生代：新对象大多数都默认进入新生代的 Eden 区
-
 - 对象进入老年代的四种情况：
 
   1. **年龄太大 Minor GC 15次**
 
      - `-XX:MaxTenuringThreshold`
-
-  2. **动态年龄判断：**MinorGC 之后，若 Survivor 区中的一批对象的总大小 > Survivor区
+  2. **动态年龄判断**：MinorGC 之后，若 Survivor 区中的一批对象的总大小 > Survivor区
 
      的50%，那么就会将此时大于等于这批对象年龄最大值的所有对象，直接进入老年代
 
@@ -757,18 +759,14 @@ public class StringTableDemo {
 
        象总和大小超过了Survivor区域的50%，此时就会把年龄 n 及以上的对象都放入老年
 
-       代 
-
+       代
      - **目的：希望那些可能是长期存活的对象，尽早进入老年代。**
-
      - `-XX:TargetSurvivorRatio` 可以指定
-
   3. **大对象**直接进入老年代：**前提是 Serial 和 ParNew 收集器**
 
-     -  举个栗子：字符串或数组
+     - 举个栗子：字符串或数组
      - **目的：避免大对象分配内存时的复制操作降低效率，避免 Eden 和 Survior 区的复制**
      - `-XX:PretenureSizeThreshold`  一般默认为 **1M**
-
   4. **MinorGC 后存活对象太多无法放入 Survivor**
 
 **内存（空间）担保机制：**

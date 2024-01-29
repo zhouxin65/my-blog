@@ -10,7 +10,6 @@ export default defineUserConfig({
   description: '心有千言，言不尽意',
   port: 8001,
   dest: 'dist',
-  shouldPrefetch: true,
   head: [
     ['link', { rel: 'icon', href: '/cat-avatar.jpg' }],
     ['link', { rel: 'stylesheet', href: '/css/katex.min.css' }],
