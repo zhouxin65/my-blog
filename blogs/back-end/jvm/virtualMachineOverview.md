@@ -2,9 +2,9 @@
 title: JVM 虚拟机
 date: 2024-01-11
 categories:
-  - JVM
+- JVM
 tags:
-  - JVM
+- JVM
 ---
 # 1. JVM 虚拟机概述
 

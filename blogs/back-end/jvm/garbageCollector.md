@@ -2,9 +2,9 @@
 title: JVM 垃圾收集器
 date: 2024-01-13
 categories:
-  - JVM
+- JVM
 tags:
-  - JVM
+- JVM
 ---
 
 # JVM 垃圾收集器

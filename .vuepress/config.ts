@@ -85,6 +85,17 @@ export default defineUserConfig({
           ],
         },
       ],
+      '/blogs/back-end/network/': [
+        {
+          text: '网络编程',
+          children: [
+            {
+              text: '网络编程基础',
+              link: '/blogs/back-end/network/fundamentals.html',
+            },
+          ],
+        },
+      ],
       '/blogs/tools/': [
         {
           text: 'Mac 平台',
@@ -129,6 +140,7 @@ export default defineUserConfig({
           { text: '优化', link: '/blogs/back-end/optimize/environmentBuilding.html' },
           { text: 'JVM', link: '/blogs/back-end/jvm/virtualMachineOverview.html' },
           { text: '并发编程', link: '/blogs/back-end/concurrent/multiThread.html' },
+          { text: '网络编程', link: '/blogs/back-end/network/fundamentals.html' },
         ],
       },
       // {text: '笔记', link: '/blogs/notes/note1', icon: 'Document'},
@@ -148,7 +160,7 @@ export default defineUserConfig({
       body: [
         {
           type: 'text',
-          content: '🎉🎉 你好呀，欢迎来到鑫旺心语！ 🎉🎉',
+          content: '🎉 你好呀，欢迎来到鑫旺心语！ 🎉',
           style: 'font-size: 12px;',
         },
         {

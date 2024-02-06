@@ -1,13 +1,19 @@
 import { onMounted } from 'vue';
 import { defineClientConfig, usePageData } from '@vuepress/client';
 import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill';
+import { useRouter } from 'vue-router';
+
 
 export default defineClientConfig({
   enhance({ app, router, siteData }) {
 
   },
   setup() {
+
+    const router = useRouter();
+
     onMounted(() => {
+      // console.log(router.currentRoute.value);
       polyfillCountryFlagEmojis();
 
       // if (window.location.pathname === '/')
