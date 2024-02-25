@@ -93,6 +93,10 @@ export default defineUserConfig({
               text: '网络编程基础',
               link: '/blogs/back-end/network/fundamentals.html',
             },
+            {
+              text: '深入 BIO 与 NIO',
+              link: '/blogs/back-end/network/nio.html',
+            },
           ],
         },
       ],
