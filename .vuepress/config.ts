@@ -97,6 +97,10 @@ export default defineUserConfig({
               text: '深入 BIO 与 NIO',
               link: '/blogs/back-end/network/nio.html',
             },
+            {
+              text: '手写一个 RPC 框架 HeroRPC',
+              link: '/blogs/back-end/network/rpc.html',
+            },
           ],
         },
       ],
