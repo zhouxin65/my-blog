@@ -105,6 +105,10 @@ export default defineUserConfig({
               text: '手写一个 Tomcat',
               link: '/blogs/back-end/network/tomcat.html',
             },
+            {
+              text: '600 W+ 连接网络应用实战',
+              link: '/blogs/back-end/network/disruptor.html',
+            },
           ],
         },
       ],
