@@ -101,6 +101,10 @@ export default defineUserConfig({
               text: '手写一个 RPC 框架 HeroRPC',
               link: '/blogs/back-end/network/rpc.html',
             },
+            {
+              text: '手写一个 Tomcat',
+              link: '/blogs/back-end/network/tomcat.html',
+            },
           ],
         },
       ],
