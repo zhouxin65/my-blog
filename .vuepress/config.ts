@@ -4,8 +4,14 @@ import katex from 'markdown-it-katex';
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics';
 import { seoPlugin } from 'vuepress-plugin-seo2';
 import { sitemapPlugin } from 'vuepress-plugin-sitemap2';
+import webpackBundler from '@vuepress/bundler-webpack';
 
 export default defineUserConfig({
+  bundler: webpackBundler({
+    postcss: {},
+    vue: {},
+  }),
+
   title: '鑫旺心语',
   description: '心有千言，言不尽意',
   port: 8001,
